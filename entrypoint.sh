@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Prepare log files and start outputting logs to stdout
 touch ./logs/gunicorn.log
@@ -7,11 +7,17 @@ tail -n 0 -f ./logs/gunicorn*.log &
 
 export DJANGO_SETTINGS_MODULE=feed.settings
 
-exec gunicorn feed.wsgi:application \
-    --name feed_django \
-    --bind 0.0.0.0:8000 \
+python3 manage.py migrate 
+
+exec gunicorn feed.wsgi \
+    --name feed \
+    --bind 0.0.0.0:8080 \
     --workers 5 \
-    --log-level=info \
-    --log-file=./logs/gunicorn.log \
-    --access-logfile=./logs/gunicorn-access.log \
 "$@"
+
+
+# extra gunicorn args removed for debugging
+
+#     --log-level=info \
+#     --log-file=./logs/gunicorn.log \
+#     --access-logfile=./logs/gunicorn-access.log \
