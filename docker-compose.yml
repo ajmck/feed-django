@@ -1,0 +1,19 @@
+version: '3'
+services:
+        web:
+                build: web/
+                ports:
+                        - "8080:8080"
+                depends_on:
+                        - db
+                volumes:
+                        - ./web:/opt/web
+        db:
+                image: mdillon/postgis
+                ports:
+                        - "5432:5432"
+                volumes:
+                        - pg_data:/var/lib/postgresql
+                env_file: .env
+volumes:
+        pg_data: {}

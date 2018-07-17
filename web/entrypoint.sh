@@ -8,6 +8,7 @@ tail -n 0 -f ./logs/gunicorn*.log &
 export DJANGO_SETTINGS_MODULE=feed.settings
 
 python3 manage.py migrate 
+python3 manage.py collectstatic
 
 exec gunicorn feed.wsgi \
     --name feed \
