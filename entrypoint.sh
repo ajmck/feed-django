@@ -5,7 +5,7 @@ touch ./logs/gunicorn.log
 touch ./logs/gunicorn-access.log
 tail -n 0 -f ./logs/gunicorn*.log &
 
-export DJANGO_SETTINGS_MODULE=projectx.settings
+export DJANGO_SETTINGS_MODULE=feed.settings
 
 exec gunicorn feed.wsgi:application \
     --name feed_django \
