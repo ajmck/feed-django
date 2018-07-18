@@ -1,0 +1,32 @@
+version: '3'
+volumes:
+        pg_data: {}
+        feedvol: {}
+services:
+        web:
+                build: web/
+                container_name: feed-django
+                expose:
+                        - "8080"
+                depends_on:
+                        - db
+                volumes:
+                        - feedvol:/opt/feed
+                env_file: .env
+        db:
+                image: mdillon/postgis
+                container_name: feed-postgis
+                ports:
+                        - "5432:5432"
+                volumes:
+                        - pg_data:/var/lib/postgresql
+                env_file: .env
+        nginx:
+                build: nginx/
+                container_name: feed-nginx
+                ports: 
+                        - "8080:8080"
+                volumes:
+                        - feedvol:/opt/feed
+                depends_on:
+                        - web
