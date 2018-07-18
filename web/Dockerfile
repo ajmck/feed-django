@@ -3,13 +3,24 @@ FROM alpine:3.8
 
 MAINTAINER Maintainer Alex McKirdy
 
+ENV PYTHONBUFFERED 1
+
 RUN apk add \
 	python3-dev \
 	py3-pip \
 	git \
-	py-gunicorn
+	py-gunicorn \
+	py3-psycopg2
 
 RUN python3 -m ensurepip
+
+# For psycopg2
+# https://stackoverflow.com/questions/41574928
+# RUN apk update && \
+#     apk add --virtual build-deps gcc python-dev musl-dev && \
+#     apk add postgresql-dev
+# 
+# RUN pip3 install psycopg2
 
 # Geospatial libraries in edge repo
 # https://github.com/appropriate/docker-postgis/blob/master/Dockerfile.alpine.template

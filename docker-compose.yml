@@ -8,6 +8,7 @@ services:
                         - db
                 volumes:
                         - ./web:/opt/web
+                env_file: .env
         db:
                 image: mdillon/postgis
                 ports:

@@ -15,5 +15,9 @@ https://alexurquhart.com/post/set-up-postgis-with-docker/
 
 * Install `docker-ce` and `docker-compose`
 * Clone this repository
-* Run `docker-compose up` from repo directory
+* Run `docker-compose build`
+* Run `docker-compose up` - this will fail on the first run as the web container starts while Postgres is still initialising 
+* Run `docker-compose up -d` from repo directory
 * Visit `127.0.0.1:8080/core`
+* Run `docker-compose down` to stop containers
+
