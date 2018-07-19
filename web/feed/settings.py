@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-#     'django.contrib.gis',
+    'django.contrib.gis',
     'core.apps.CoreConfig',
 ]
 
@@ -65,7 +65,7 @@ WSGI_APPLICATION = 'feed.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': os.getenv("POSTGRES_NAME"),
         'USER': os.getenv("POSTGRES_USER"),
 	'PASSWORD': os.getenv("POSTGRES_PASS"),

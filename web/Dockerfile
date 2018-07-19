@@ -15,20 +15,12 @@ RUN apk add \
 
 RUN python3 -m ensurepip
 
-# For psycopg2
-# https://stackoverflow.com/questions/41574928
-# RUN apk update && \
-#     apk add --virtual build-deps gcc python-dev musl-dev && \
-#     apk add postgresql-dev
-# 
-# RUN pip3 install psycopg2
-
 # Geospatial libraries in edge repo
 # https://github.com/appropriate/docker-postgis/blob/master/Dockerfile.alpine.template
-# RUN apk add --no-cache --virtual .build-deps-testing \
-# 	--repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-# 	gdal-dev \
-# 	geos-dev
+RUN apk add --no-cache --virtual .build-deps-testing \
+	--repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+	gdal-dev \
+	geos-dev
 
 ENV PROJECT=feed
 ENV CONTAINER_HOME=/opt
