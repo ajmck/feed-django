@@ -9,10 +9,10 @@ tail -n 0 -f ./logs/gunicorn*.log &
 export DJANGO_SETTINGS_MODULE=feed.settings
 
 
-
-# pip3 install --upgrade pip
-# pip3 install -r requirements.txt
-python3 manage.py migrate 
+# wait for postgres to become available
+# https://stackoverflow.com/questions/31746182/docker-compose-wait-for-container-x-before-starting-y/41854997#41854997
+while ! nc -z db 5432; do sleep 3; done
+python3 manage.py migrate
 python3 manage.py collectstatic --noinput
 
 exec gunicorn feed.wsgi \

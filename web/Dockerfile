@@ -10,7 +10,8 @@ RUN apk add \
 	py3-pip \
 	git \
 	py-gunicorn \
-	py3-psycopg2
+	py3-psycopg2 \
+	netcat-openbsd
 
 RUN python3 -m ensurepip
 
