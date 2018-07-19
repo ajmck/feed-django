@@ -10,6 +10,7 @@ RUN apk add \
 	py3-pip \
 	git \
 	py-gunicorn \
+	py-setuptools \
 	py3-psycopg2 \
 	netcat-openbsd
 
@@ -20,7 +21,10 @@ RUN python3 -m ensurepip
 RUN apk add --no-cache --virtual .build-deps-testing \
 	--repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
 	gdal-dev \
-	geos-dev
+	geos-dev \
+	gdal \
+	geos \
+	py-gdal
 
 ENV PROJECT=feed
 ENV CONTAINER_HOME=/opt
