@@ -3,6 +3,7 @@ version: '3'
 volumes:
         pg_data: {}
         feedvol: {}
+        static: {}
 
 services:
 
@@ -15,6 +16,7 @@ services:
                         - db
                 volumes:
                         - feedvol:/opt/feed
+                        - static:/opt/feed/static
                 env_file: .env
 
         db:
@@ -33,5 +35,6 @@ services:
                         - "80:80"
                 volumes:
                         - feedvol:/opt/feed
+                        - static:/opt/feed/static
                 depends_on:
                         - web
