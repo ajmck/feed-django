@@ -28,3 +28,6 @@ def index(request):
 def detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     return render(request, 'core/detail.html', {'post': post})
+
+def about(request):
+    return render(request, 'core/about.html')

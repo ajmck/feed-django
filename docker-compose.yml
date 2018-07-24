@@ -15,9 +15,11 @@ services:
                 depends_on:
                         - db
                 volumes:
+                        - .:/code
                         - feedvol:/opt/feed
                         - static:/opt/feed/static
                 env_file: .env
+                restart: always
 
         db:
                 image: mdillon/postgis
@@ -34,7 +36,6 @@ services:
                 ports: 
                         - "80:80"
                 volumes:
-                        - feedvol:/opt/feed
                         - static:/opt/feed/static
                 depends_on:
                         - web
