@@ -2,7 +2,6 @@ version: '3'
 
 volumes:
         pg_data: {}
-        feedvol: {}
         static: {}
 
 services:
@@ -15,11 +14,8 @@ services:
                 depends_on:
                         - db
                 volumes:
-                        - .:/code
-                        - feedvol:/opt/feed
                         - static:/opt/feed/static
                 env_file: .env
-                restart: always
 
         db:
                 image: mdillon/postgis
