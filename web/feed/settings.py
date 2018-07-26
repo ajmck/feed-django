@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -97,13 +98,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -111,21 +108,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, "static"),
-        "/opt/feed/static"
-        ]
+# STATICFILES_DIRS = [
+#         os.path.join(BASE_DIR, "static"),
+#         "/opt/feed/static"
+#         ]
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 print("STATIC_ROOT: " + str(STATIC_ROOT))
-# STATIC_ROOT = "/static"
-#######
-# Custom Settings
 
 POST_BODY_LENGTH = 300
-
-
-
-
-# Workaround for nginx
-# https://www.digitalocean.com/community/questions/after-adding-my-domain-to-allowed_hosts-in-django-settings-i-am-still-getting-a-502-error-not-sure-why-my-settings-are-not-recognized?answer=39129

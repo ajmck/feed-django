@@ -7,10 +7,10 @@ volumes:
 services:
 
         web:
-                build: web/
+                build: .
                 container_name: feed-django
-                expose:
-                        - "8080"
+                ports:
+                        - "8080:8080"
                 depends_on:
                         - db
                 volumes:
@@ -25,13 +25,3 @@ services:
                 volumes:
                         - pg_data:/var/lib/postgresql
                 env_file: .env
-
-        nginx:
-                build: nginx/
-                container_name: feed-nginx
-                ports: 
-                        - "80:80"
-                volumes:
-                        - static:/opt/feed/static
-                depends_on:
-                        - web

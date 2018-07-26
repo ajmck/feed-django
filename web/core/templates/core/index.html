@@ -5,8 +5,8 @@
 				<title>Feed</title>
 		</head>
 		<body>
-
-				<script src="{% static 'scripts/location.js' %}"> </script>
+			{% load static %}
+				<script src="{% static 'core/location.js' %}"> </script>
 
 				<form method="post" action="">
 						{%  csrf_token %}

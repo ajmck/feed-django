@@ -35,18 +35,18 @@ WORKDIR $CONTAINER_HOME
 RUN mkdir logs
 
 # Copy application source code to $CONTAINER_PROJECT
-COPY . $CONTAINER_PROJECT
+COPY web $CONTAINER_PROJECT
 
 # pip https://docs.docker.com/compose/django/
 RUN mkdir /code
 WORKDIR /code
-ADD requirements.txt /code/
+ADD web/requirements.txt /code/
 RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
-ADD . /code/
+ADD web /code/
 
 
 # Copy and set entrypoint
 WORKDIR $CONTAINER_PROJECT
-COPY ./entrypoint.sh /
+COPY web/entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
