@@ -1,4 +1,6 @@
 import os
+import dj_database_url
+import django.contrib.gis
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -61,7 +63,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'feed.wsgi.application'
 
-
+print(os.getenv("DATABASE_URL"))
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 DATABASES = {
@@ -74,23 +76,20 @@ DATABASES = {
         'PORT': 5432,
     }
 }
+ 
+# print("DJ_DB: " + str(dj_database_url.config()))
+# DATABASES['default'] =  dj_database_url.config()
+print(DATABASES)
+# DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    { 'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
+    { 'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', },
+    { 'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', },
+    { 'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },
 ]
 
 
@@ -107,12 +106,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
 # STATICFILES_DIRS = [
 #         os.path.join(BASE_DIR, "static"),
 #         "/opt/feed/static"
 #         ]
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_URL = "/static/"
 
 print("STATIC_ROOT: " + str(STATIC_ROOT))
 
