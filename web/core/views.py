@@ -21,13 +21,11 @@ def index(request):
             new_post.save()
             # return HttpResponseRedirect('core/index.html')
 
-    return render(request, 'core/index.html', context)
+    return render(request, 'index.html', context)
     # return render_to_response('core/index.html', context)
 
 
 def detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    return render(request, 'core/detail.html', {'post': post})
+    return render(request, 'detail.html', {'post': post})
 
-def about(request):
-    return render(request, 'core/about.html')
