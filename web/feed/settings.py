@@ -66,21 +66,11 @@ WSGI_APPLICATION = 'feed.wsgi.application'
 print(os.getenv("DATABASE_URL"))
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': os.getenv("POSTGRES_NAME"),
-        'USER': os.getenv("POSTGRES_USER"),
-	'PASSWORD': os.getenv("POSTGRES_PASS"),
-        'HOST': os.getenv("POSTGRES_HOST"),
-        'PORT': 5432,
-    }
-}
- 
-# print("DJ_DB: " + str(dj_database_url.config()))
-# DATABASES['default'] =  dj_database_url.config()
+DATABASES = {}
+
+DATABASES['default'] =  dj_database_url.config()
 print(DATABASES)
-# DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
+DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
