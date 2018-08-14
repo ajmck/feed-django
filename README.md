@@ -21,3 +21,9 @@ https://alexurquhart.com/post/set-up-postgis-with-docker/
 * Visit `127.0.0.1:8080/core`
 * Run `docker-compose down` to stop containers
 
+# IDE
+* Set up Windows Subsystem for Linux
+* Create python virtualenv, and install pip requirements
+* Install libgdal-dev
+* Connect PyCharm using virtualenv python as remote interpreter
+* Set dockerfile as PyCharm's build configuration
