@@ -1,0 +1,9 @@
+{% extends "_layout.html" %}
+
+{% block container %}
+{% load static %}
+    <script src="{% static 'core/js/location.js' %}"> </script>
+    <p><button onclick="geoFindMe()">Show my location</button></p>
+    <div id="out"></div>
+
+{% endblock container %}

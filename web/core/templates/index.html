@@ -2,8 +2,6 @@
 
 {% block container %}
 
-{% load static %}
-    <script src="{% static 'core/js/location.js' %}"> </script>
 
     <form method="post" action="">
             {%  csrf_token %}
@@ -13,19 +11,24 @@
             <input type="submit" value="Submit"/>
     </form>
 
-    <p><button onclick="geoFindMe()">Show my location</button></p>
-    <div id="out"></div>
+    <br />
 
-    {% if latest_posts %}
+{% if latest_posts %}
     {# latests_posts defined in views.index #}
     {# TODO - allow user customisable queries (hot in category, most votes...) #}
-    <ul>
-            {% for post in latest_posts %}
-            <li><a href="{% url 'core:detail' post.id %}">{{ post.body }}</a></li>
-            {% endfor %}
-    </ul>
-    {% else %}
+
+    {% for post in latest_posts %}
+    <a href="{% url 'core:detail' post.id %}">
+        <div class="card mb-3" >
+            <div class="card-body">
+                {{ post.body }}
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+
+{% else %}
     <p>No posts.</p>
-    {% endif %}
+{% endif %}
 
 {% endblock container %}

@@ -6,7 +6,7 @@ class PostForm(ModelForm):
     class Meta:
         model = Post
         fields = ['body']
-        # labels = {'body': 'Enter a post:',}
+        labels = {'body': 'Enter a post: ',}
         # help_texts
 
         def clean_post(self):
