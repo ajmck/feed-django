@@ -3,32 +3,76 @@
 {% block container %}
 
 
+<div class="form-group">
     <form method="post" action="">
-            {%  csrf_token %}
-            <table>
-                    {{ submission.as_table }}
-            </table>
-            <input type="submit" value="Submit"/>
-    </form>
 
-    <br />
+        {% csrf_token %}
+
+        <div class="submission input-group mb-3">
+    <textarea
+            rows="2"
+            name="{{ submission.body.name }}"
+            maxlength="{{ submission.body.field.max_length }}"
+            placeholder="Ask away..."
+            class="submission form-control form-control-lg"
+            required></textarea>
+
+            <input type="submit"
+                   class="input-group-append btn btn-primary"
+                   style="border-radius: 0px;"
+                   value="Submit"></input>
+
+        </div>
+
+    </form>
+</div>
+
+<br/>
 
 {% if latest_posts %}
-    {# latests_posts defined in views.index #}
-    {# TODO - allow user customisable queries (hot in category, most votes...) #}
+{# latests_posts defined in views.index #}
+{# TODO - allow user customisable queries (hot in category, most votes...) #}
 
-    {% for post in latest_posts %}
-    <a href="{% url 'core:detail' post.id %}">
-        <div class="card mb-3" >
-            <div class="card-body">
-                {{ post.body }}
+{% for post in latest_posts %}
+<a href="{% url 'core:detail' post.id %}" style="text-decoration: none;">
+    <div class="post card mb-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    {{ post.body }}
+
+
+                    <div class="post-details">
+                        <span class="fas fa-comments"> 0</span>
+                        <span style="min-width: 2em;"></span>
+                        <span class="far fa-clock"> Now</span>
+                    </div>
+                </div>
+
+
+                <div class="col-1">
+                    <table>
+                        <tr>
+                            <td><span class="fas fa-chevron-up"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>0</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="fas fa-chevron-down"></span></td>
+                        </tr>
+                    </table>
+                </div>
+
             </div>
+
         </div>
-    </a>
-    {% endfor %}
+    </div>
+</a>
+{% endfor %}
 
 {% else %}
-    <p>No posts.</p>
+<p>No posts.</p>
 {% endif %}
 
 {% endblock container %}

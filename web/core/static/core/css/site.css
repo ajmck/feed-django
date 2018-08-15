@@ -65,7 +65,45 @@ input[type="checkbox"].input-validation-error {
     padding : 5px;
 }
 
+
+
+.submission {
+    /* submission form */
+    max-width: 100%;
+}
+
+.submission textarea {
+    resize: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
 .card-title {
 font-size: 14pt;
 font-family: Verdana, sans-serif;
 }
+
+.post, .post:hover, .post:link, .post:active .post:visited {
+    font-size: 2em;
+    font-style: normal;
+    text-decoration: none;
+    color: black;
+}
+
+.post:hover {
+    background-color: #F0F0F0;
+    text-decoration: none;
+}
+
+.card-body, .card-body:hover, .card-body:link, .card-body:active, .card-body:visited {
+    text-decoration: none;
+}
+
+
+.post-details {
+    /* time and number of comments, grey text */
+    font-size: 0.6em;
+    color: #444444;
+}
+
