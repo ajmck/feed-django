@@ -64,14 +64,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'feed.wsgi.application'
 
-print(os.getenv("DATABASE_URL"))
+# print(os.getenv("DATABASE_URL"))
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 DATABASES = {}
-
 DATABASES['default'] =  dj_database_url.config()
-print(DATABASES)
 DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
+# print(DATABASES)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
