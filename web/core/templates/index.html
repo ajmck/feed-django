@@ -35,7 +35,7 @@
 
 {% for post in latest_posts %}
 <a href="{% url 'core:detail' post.id %}" style="text-decoration: none;">
-    <div class="post card mb-3">
+    <div class="post post-hover card mb-3">
         <div class="card-body">
             <div class="row">
                 <div class="col">
@@ -50,7 +50,7 @@
                 </div>
 
 
-                <div class="col-1">
+                <div class="col-1 align-self-end">
                     <table>
                         <tr>
                             <td><span class="fas fa-chevron-up"></span></td>

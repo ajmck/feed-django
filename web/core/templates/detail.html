@@ -1,5 +1,65 @@
 {% extends "_layout.html" %}
 
 {% block container %}
-{{ post }}
+
+<h2>{{ post.body }}</h2>
+<hr />
+
+{% if comments %}
+    {% for comment in comments %}
+
+        <div class="post card mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        {{ comment.body }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+{% else %}
+    <div class="alert alert-info col-12">
+        <p>No comments yet.</p>
+    </div>
+{% endif %}
+
+
+<div class="form-group">
+    <form method="post" action="">
+
+        {% csrf_token %}
+
+
+
+        <div class="submission input-group mb-3">
+            <textarea
+                rows="2"
+                name="{{ submission.body.name }}"
+                maxlength="{{ submission.body.field.max_length }}"
+                placeholder="Ask away..."
+                class="submission form-control form-control-lg"
+                required></textarea>
+
+            <input type="hidden"
+                   name="parent"
+                   value="{{post.id}}">
+
+            <input type="submit"
+                   class="input-group-append btn btn-primary"
+                   style="border-radius: 0px;"
+                   value="Submit"></input>
+
+        </div>
+
+
+    </form>
+
+</div>
+
+
+
+
 {% endblock container %}}
