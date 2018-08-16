@@ -30,7 +30,7 @@
 <br/>
 
 {% if latest_posts %}
-{# latests_posts defined in views.index #}
+
 {# TODO - allow user customisable queries (hot in category, most votes...) #}
 
 {% for post in latest_posts %}
@@ -40,30 +40,7 @@
             <div class="row">
                 <div class="col">
                     {{ post.body }}
-
-
-                    <div class="post-details">
-                        <span class="fas fa-comments"> 0</span>
-                        <span style="min-width: 2em;"></span>
-                        <span class="far fa-clock"> Now</span>
-                    </div>
                 </div>
-
-
-                <div class="col-1 align-self-end">
-                    <table>
-                        <tr>
-                            <td><span class="fas fa-chevron-up"></span></td>
-                        </tr>
-                        <tr>
-                            <td><span>0</span></td>
-                        </tr>
-                        <tr>
-                            <td><span class="fas fa-chevron-down"></span></td>
-                        </tr>
-                    </table>
-                </div>
-
             </div>
 
         </div>
