@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
     'core.apps.CoreConfig',
     'rest_framework',
+    'secretballot',
 ]
 
 MIDDLEWARE = [
@@ -42,6 +43,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'secretballot.middleware.SecretBallotIpUseragentMiddleware',
 ]
 
 ROOT_URLCONF = 'feed.urls'

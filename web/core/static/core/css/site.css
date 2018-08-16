@@ -107,3 +107,14 @@ font-family: Verdana, sans-serif;
     color: #444444;
 }
 
+.post-novoting {
+    display: inline-block;
+    float: left;
+}
+
+.post-voting {
+    display: inline-block;
+    float: right;
+    position: relative;
+    text-align: center;
+}

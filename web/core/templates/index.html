@@ -71,10 +71,32 @@
 <a href="{% url 'core:detail' post.id %}" style="text-decoration: none;">
     <div class="post post-hover card mb-3">
         <div class="card-body">
-            <div class="row">
-                <div class="col">
+            <div class="post-novoting">
+
                     {{ post.body }}
-                </div>
+
+
+                    <div class="post-details">
+                        <span class="fas fa-comments" ></span>0
+                        <span style="min-width: 2em;"></span>
+                        <span class="far fa-clock"></span>Now
+                    </div>
+            </div>
+
+
+            <div class="post-voting">
+                <table>
+                    <tr>
+                        <td><span class="fas fa-chevron-up"></span></td>
+                    </tr>
+                    <tr>
+                        <td><span>0</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fas fa-chevron-down"></span></td>
+                    </tr>
+                </table>
+
             </div>
 
         </div>
