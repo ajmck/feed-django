@@ -49,4 +49,4 @@ ADD web /code/
 # Copy and set entrypoint
 WORKDIR $CONTAINER_PROJECT
 COPY web/entrypoint.sh /
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/entrypoint.sh"]
