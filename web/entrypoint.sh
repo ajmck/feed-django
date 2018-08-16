@@ -18,7 +18,7 @@ python3 manage.py collectstatic --noinput
 
 exec gunicorn feed.wsgi \
     --name feed \
-    --bind 0.0.0.0:8080 \
+    --bind 0.0.0.0:$PORT \
     --workers 5 \
 "$@"
 
