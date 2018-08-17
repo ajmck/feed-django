@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Post, Comment
+from django.contrib.gis.admin import OSMGeoAdmin
+from .models import Post, Comment, LocationBlock
 # Register your models here.
 
 
@@ -18,4 +19,10 @@ class PostAdmin(admin.ModelAdmin):
     ]
 
 
+class LocationAdmin(OSMGeoAdmin):
+    # Coordinates for Dunedin
+    default_lat = -45.8788
+    default_lon = 170.5028
+
 admin.site.register(Post, PostAdmin)
+admin.site.register(LocationBlock, LocationAdmin)
