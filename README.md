@@ -7,8 +7,8 @@ your heart's content.
 Text posts, comments, votes, and that's it.
 
 This also doubles as a research project for SURV319 Geospatial Analysis and
-Programming; By adding a location to a post, we can answer some important
-questions. Which street has better banter, Castle or Hyde? Is AskOtago most
+Programming; by adding a location to a post, we can answer some important
+questions. Which street has better chat, Castle or Hyde? Is AskOtago most
 active during a long lecture? Is everything on this site fabricated in the
 Critic office?
 
@@ -18,7 +18,7 @@ Critic office?
 
 # Project architecture
 
-AskOtago is a Django project contained inside a Docker container, to be run
+AskOtago is a Django project within a Docker container, to be run
 with PostgresQL with GIS extensions. Currently the development version is
 hosted on Heroku, at https://askotagodev.herokuapp.com
 
