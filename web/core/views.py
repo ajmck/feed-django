@@ -14,11 +14,18 @@ def index(request):
         if submission.is_valid():
             new_post = Post()
             new_post.body = submission.cleaned_data['body']
-            # lat = submission.cleaned_data['latitude']
-            # lon = submission.cleaned_data['longitude']
 
-            #if lat is not None and lon is not None:
-            #    new_post.post_location = Point(float(lat), float(lon))
+            try:
+                lat = float(submission.data['latitude'])
+                lon = float(submission.data['longitude'])
+                if lat is not None and lon is not None:
+                    # What the FUCK
+                    # Points require longitude before latitude
+                    # https://stackoverflow.com/questions/30823988/geodjango-converting-srid-4326-to-srid-3857
+                    new_post.post_location = Point(x=lon, y=lat)
+            except Exception as e:
+                print(e)
+                new_post.post_location = None
 
             new_post.save()
             return HttpResponseRedirect('/')

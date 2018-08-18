@@ -13,6 +13,7 @@ services:
                         - "8080:8080"
                 depends_on:
                         - db
+                        - wdb
                 volumes:
                         - static:/opt/feed/static
                 env_file: .env

@@ -22,8 +22,10 @@ RUN apk add --no-cache --virtual .build-deps-testing \
 	--repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
 	gdal-dev \
 	geos-dev \
+	proj4-dev \
 	gdal \
 	geos \
+	proj4 \
 	py-gdal
 
 ENV PROJECT=feed
