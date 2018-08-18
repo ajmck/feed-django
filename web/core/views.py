@@ -45,7 +45,8 @@ def detail(request, post_id):
             return HttpResponseRedirect('/' + str(post_id))
 
     submission = CommentForm()
-    comments = reversed(post.comment_set.all())
+    # parent_post is the related name of parent, in the comments class
+    comments = post.parent_post.all()
     context = {
         'post': post,
         'submission': submission,
