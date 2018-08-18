@@ -14,5 +14,8 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "feed.settings")
 
 application = get_wsgi_application()
-application = WhiteNoise(application, root='/opt/feed/static')
+
+from wdb.ext import WdbMiddleware
+application = WdbMiddleware(application)
+# application = WhiteNoise(application, root='/opt/feed/static')
 

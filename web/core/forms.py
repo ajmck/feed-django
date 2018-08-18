@@ -12,8 +12,8 @@ class PostForm(ModelForm):
 
         def clean_post(self):
             data = self.cleaned_data['body']
-
             return data
+
 
 
 class CommentForm(PostForm):

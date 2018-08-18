@@ -10,6 +10,7 @@ from django.contrib.gis.geos import Point
 def index(request):
     if request.method == 'POST':
         submission = PostForm(request.POST)
+
         if submission.is_valid():
             new_post = Post()
             new_post.body = submission.cleaned_data['body']
