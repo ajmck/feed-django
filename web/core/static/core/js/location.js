@@ -18,6 +18,6 @@ window.onload  = function geoFindMe() {
 	function error() {
 		console.log("Unable to retrieve your location");
 	}
-	
+
 	navigator.geolocation.getCurrentPosition(success, error);
 }

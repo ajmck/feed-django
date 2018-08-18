@@ -21,6 +21,7 @@
         {# text form #}
         <div class="submission input-group mb-3">
 
+            {# TODO: Stop redirect on click #}
             <button class="input-group-prepend btn btn-default"
                     onclick="geoFindMe()"
                     style="border-radius: 0px;">
@@ -32,8 +33,7 @@
             name="{{ submission.body.name }}"
             maxlength="{{ submission.body.field.max_length }}"
             placeholder="Ask away..."
-            class="submission form-control form-control-lg"
-            required></textarea>
+            class="submission form-control form-control-lg"></textarea>
 
             <input type="submit"
                    class="input-group-append btn btn-primary"
