@@ -1,9 +1,8 @@
 // copied from https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
 window.onload  = function geoFindMe() {
-	var output = document.getElementById("out");
 
 	if (!navigator.geolocation){
-		output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+		console.log("Geolocation is not supported by your browser");
 		return;
 	}
 
@@ -11,24 +10,14 @@ window.onload  = function geoFindMe() {
 		var latitude  = position.coords.latitude;
 		var longitude = position.coords.longitude;
 
-		output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
-
 		document.getElementById("form-lat").value = latitude
 		document.getElementById("form-lon").value = longitude
 
-		/*
-		var img = new Image();
-		img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
-
-		output.appendChild(img);
-		*/
 	}
 
 	function error() {
-		output.innerHTML = "Unable to retrieve your location";
+		console.log("Unable to retrieve your location");
 	}
-
-	output.innerHTML = "<p>Locating…</p>";
-
+	
 	navigator.geolocation.getCurrentPosition(success, error);
 }
