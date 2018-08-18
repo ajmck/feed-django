@@ -9,7 +9,7 @@ class Post(models.Model):
     body = models.CharField(max_length=POST_BODY_LENGTH)
     pub_date = models.DateTimeField('Time Posted', default=timezone.now)
     votes = models.IntegerField(default=0)
-    # post_location = models.PointField(null=True, blank=True)
+    post_location = models.PointField(null=True, blank=True)
 
     def __str__(self):
         return self.body
