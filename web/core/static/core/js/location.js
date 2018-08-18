@@ -13,10 +13,15 @@ window.onload  = function geoFindMe() {
 
 		output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
 
+		document.getElementById("form-lat").value = latitude
+		document.getElementById("form-lon").value = longitude
+
+		/*
 		var img = new Image();
 		img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
 
 		output.appendChild(img);
+		*/
 	}
 
 	function error() {

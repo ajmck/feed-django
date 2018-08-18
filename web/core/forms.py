@@ -3,6 +3,7 @@ from .models import Post, Comment
 
 
 class PostForm(ModelForm):
+
     class Meta:
         model = Post
         fields = ['body']
@@ -11,6 +12,7 @@ class PostForm(ModelForm):
 
         def clean_post(self):
             data = self.cleaned_data['body']
+
             return data
 
 

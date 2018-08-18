@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, render_to_response
 from django.template import loader
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
+from django.contrib.gis.geos import Point
 
 
 # Create your views here.
@@ -12,6 +13,12 @@ def index(request):
         if submission.is_valid():
             new_post = Post()
             new_post.body = submission.cleaned_data['body']
+            # lat = submission.cleaned_data['latitude']
+            # lon = submission.cleaned_data['longitude']
+
+            #if lat is not None and lon is not None:
+            #    new_post.post_location = Point(float(lat), float(lon))
+
             new_post.save()
             return HttpResponseRedirect('/')
 
