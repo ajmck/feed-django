@@ -13,6 +13,8 @@ class CommentInline(admin.TabularInline):
     fk_name = "parent"
     extra = 0
     readonly_fields = ["pub_date"]
+    formfield_overrides = {models.PointField: {'widget': OSMWidget}}
+
 
 
 

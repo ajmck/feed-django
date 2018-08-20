@@ -27,38 +27,15 @@
 {% endif %}
 
 
-<div class="form-group">
-    <form method="post" action="">
-
-        {% csrf_token %}
-
-
-
-        <div class="submission input-group mb-3">
-            <textarea
-                rows="2"
-                name="{{ submission.body.name }}"
-                maxlength="{{ submission.body.field.max_length }}"
-                placeholder="Ask away..."
-                class="submission form-control form-control-lg"></textarea>
-
+{% block submitform %}
+    {% include "_submitform.html" %}
+    {% block additional-hidden-input %}
+    {# this ought to be inside the actual form, but still works anyways #}
             <input type="hidden"
                    name="parent"
                    value="{{post.id}}">
-
-            <input type="submit"
-                   class="input-group-append btn btn-primary"
-                   style="border-radius: 0px;"
-                   value="Submit"></input>
-
-        </div>
+    {% endblock %}
+{% endblock %}
 
 
-    </form>
-
-</div>
-
-
-
-
-{% endblock container %}}
+{% endblock container %}

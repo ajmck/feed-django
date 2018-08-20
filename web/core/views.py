@@ -49,6 +49,19 @@ def detail(request, post_id):
         if submission.is_valid():
             new_comment = Comment()
             new_comment.parent = post
+
+            try:
+                lat = float(submission.data['latitude'])
+                lon = float(submission.data['longitude'])
+                if lat is not None and lon is not None:
+                    # What the FUCK
+                    # Points require longitude before latitude
+                    # https://stackoverflow.com/questions/30823988/geodjango-converting-srid-4326-to-srid-3857
+                    new_comment.post_location = Point(x=lon, y=lat)
+            except Exception as e:
+                print(e)
+                new_comment.post_location = None
+
             new_comment.body = submission.cleaned_data['body']
             new_comment.save()
             return HttpResponseRedirect('/' + str(post_id))
