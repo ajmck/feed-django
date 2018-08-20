@@ -1,5 +1,5 @@
 {% extends "_layout.html" %}
-
+{% load humanize %}
 {% block container %}
 
 <h2>{{ post.body }}</h2>
@@ -8,15 +8,36 @@
 {% if comments %}
     {% for comment in comments %}
 
-        <div class="post card mb-3">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        {{ comment.body }}
-                    </div>
+<div class="post post-hover card mb-3">
+    <div class="card-body">
+
+        <div class="post-novoting">
+                {{ comment.body }}
+                <div class="post-details">
+                    <span class="far fa-clock"></span>&nbsp;{{ comment.pub_date | naturaltime }}
                 </div>
-            </div>
         </div>
+
+
+        <div class="post-voting">
+            <table>
+                <tr><td>
+                    <a href="{% url 'core:comment_vote_up' comment.id %}">
+                        <span class="fas fa-chevron-up"></span>
+                    </a>
+                </td></tr>
+                <tr><td><span>{{ comment.vote_total }}</span></td></tr>
+                <tr><td>
+                    <a href="{% url 'core:comment_vote_down' comment.id %}">
+                        <span class="fas fa-chevron-down"></span>
+                    </a>
+                </td></tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+
 
     {% endfor %}
 
