@@ -9,4 +9,4 @@ class Comment(PostAbstract):
         abstract = False
         ordering = ['pub_date']
         
-    parent = models.ForeignKey(Post, on_delete=CASCADE, related_name='parent_post')
+    parent = models.ForeignKey(Post, on_delete=CASCADE, related_name='comments_fk')

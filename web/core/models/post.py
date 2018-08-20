@@ -5,3 +5,4 @@ class Post(PostAbstract):
     class Meta:
         abstract = False
         ordering = ['-pub_date']
+
