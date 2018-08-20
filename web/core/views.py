@@ -4,6 +4,7 @@ from django.template import loader
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
 from django.contrib.gis.geos import Point
+from secretballot.views import vote
 
 
 # Create your views here.
@@ -66,3 +67,27 @@ def detail(request, post_id):
 
 def location(request):
     return render(request, 'location.html')
+
+
+def post_vote_up(request, post_id):
+    return vote(request, Post, post_id, +1)
+
+
+def post_vote_down(request, post_id):
+    return vote(request, Post, post_id, -1)
+
+
+def post_vote_reset(request, post_id):
+    return vote(request, Post, post_id, 0)
+
+
+def comment_vote_up(request, comment_id):
+    return vote(request, Comment, comment_id, +1)
+
+
+def comment_vote_down(request, comment_id):
+    return vote(request, Comment, comment_id, -1)
+
+
+def comment_vote_reset(request, comment_id):
+    return vote(request, Comment, comment_id, 0)

@@ -87,13 +87,21 @@
             <div class="post-voting">
                 <table>
                     <tr>
-                        <td><span class="fas fa-chevron-up"></span></td>
+                        <td>
+                            <a href="{% url 'core:post_vote_up' post.id %}">
+                                <span class="fas fa-chevron-up"></span>
+                            </a>
+                        </td>
                     </tr>
                     <tr>
-                        <td><span>0</span></td>
+                        <td><span>{{ post.vote_total }}</span></td>
                     </tr>
                     <tr>
-                        <td><span class="fas fa-chevron-down"></span></td>
+                        <td>
+                            <a href="{% url 'core:post_vote_down' post.id %}">
+                                <span class="fas fa-chevron-down"></span>
+                            </a>
+                        </td>
                     </tr>
                 </table>
 
