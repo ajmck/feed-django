@@ -1,5 +1,6 @@
 import os
 import dj_database_url
+from django.utils import timezone
 import django.contrib.gis
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -29,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+    'django.contrib.humanize',
     'core.apps.CoreConfig',
     'rest_framework',
     'secretballot',
@@ -96,6 +98,10 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+# Set current timezone to NZ time
+# Note this is different from Django's default timezone
+# https://docs.djangoproject.com/en/2.1/topics/i18n/timezones/#default-current-time-zone
+timezone.activate("NZ")
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/

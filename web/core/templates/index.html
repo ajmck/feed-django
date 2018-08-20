@@ -2,7 +2,10 @@
 
 {% block container %}
 {% load static %}
+{% load humanize %} {# to pretty up date display #}
+
 <script src="{% static 'core/js/location.js' %}"> </script>
+
 
 <div class="form-group">
     <form method="post" action="">
@@ -54,7 +57,8 @@
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    This is a development website. Things will break, and content will disappear. <a href="https://github.com/ajmck/Feed" target="_blank">Source code here.</a>
+                    <h4>This is a development website. Things will break, and content will disappear.</h4>
+                    <h4><a href="https://github.com/ajmck/Feed" target="_blank">Source code here.</a></h4>
                 </div>
             </div>
 
@@ -81,7 +85,7 @@
                     <div class="post-details">
                         <span class="fas fa-comments" ></span>&nbsp;{{post.comments_fk.all|length}}
                         <span style="min-width: 2em;"></span>
-                        <span class="far fa-clock"></span>Now
+                        <span class="far fa-clock"></span>&nbsp;{{ post.pub_date | naturaltime }}
                     </div>
             </div>
 
