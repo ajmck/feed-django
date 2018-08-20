@@ -20,7 +20,6 @@ services:
                 environment:
                         - WDB_SOCKET_SERVER=wdb
                         - WDB_NO_BROWSER_AUTO_OPEN=1
-                command: python3 manage.py runserver 0.0.0.0:8080
 
         db:
                 image: mdillon/postgis
