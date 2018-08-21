@@ -15,7 +15,5 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "feed.settings")
 
 application = get_wsgi_application()
 
-from wdb.ext import WdbMiddleware
-application = WdbMiddleware(application)
-# application = WhiteNoise(application, root='/opt/feed/static')
+application = WhiteNoise(application, root='/opt/feed/static')
 
