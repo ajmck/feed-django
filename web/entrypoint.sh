@@ -17,13 +17,11 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 python3 manage.py collectstatic --noinput
 
-exec python3 manage.py runserver 0.0.0.0:$PORT
-# 
-# exec gunicorn feed.wsgi \
-#     --name feed \
-#     --bind 0.0.0.0:$PORT \
-#     --workers 5 \
-# "$@"
+exec gunicorn feed.wsgi \
+    --name feed \
+    --bind 0.0.0.0:$PORT \
+    --workers 5 \
+"$@"
 
 
 # extra gunicorn args removed for debugging
