@@ -1,0 +1,84 @@
+{% extends "_layout.html" %}
+{% load static %}
+{% block container %}
+
+<div class="container body-content">
+
+		<div class="tile card mb-3">
+			<div class="card-body">
+				<div class="header card-title"><span><a><h4>Who won the Battle of York?</h4></a></span></div>
+				<div class="slidetoexpand-content" >
+				<p class="card-title">The Americans won a clear victory, however it did not have decisive strategic results as York was a less important objective in military terms than Kingston, where the British armed vessels on Lake Ontario were based.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="tile card mb-3">
+			<div class="card-body">
+				<div class="header card-title"><span><a><h4>Who would win in a race if they were transformed into bats - the Archway building or the Burns building?</h4></a></span></div>
+				<div class="slidetoexpand-content" >
+				<p class="card-title">Easy. Archway hands down. Burns is a box, Archway is far more aerodynamic and it almost already has wings. The asbestos also has the effect of slowing Burns down.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="tile card mb-3">
+			<div class="card-body">
+				<div class="header card-title"><span><a><h4>How big should I expect my 50 bag to be?</h4></a></span></div>
+				<div class="slidetoexpand-content" >
+				<p class="card-title">In Dunedin 2.5 grams isn’t that bad. A gram should be a 20 bag - it’s not normally, but in theory you want somewhere around there so at a minimum you should be paying that rate. You may get a bit of economies of scale due to the extra amount, but don’t expect it.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="tile card mb-3">
+			<div class="card-body">
+				<div class="header card-title"><span><a><h4>What kind of grades do I need to get into Med?</h4></a></span></div>
+				<div class="slidetoexpand-content" >
+				<p class="card-title">If you have to ask, you’re not getting in.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="tile card mb-3">
+			<div class="card-body">
+				<div class="header card-title"><span><a><h4>Who is Charlene Chainz?</h4></a></span></div>
+				<div class="slidetoexpand-content" >
+				<p class="card-title">Harlene Hayne’s rap persona.</p>
+				<img src="{% static 'core/image/charlene.jpg' %}" style="width: 100%; height: auto;" alt="Charlene Chainz, in the flesh, on your computer screen">
+				</div>
+			</div>
+		</div>
+
+		<div class="tile card mb-3">
+			<div class="card-body">
+				<div class="header card-title"><span><a><h4>What is New Zealand’s oldest, bestest, and most technologically advanced student magazine?</h4></a></span></div>
+				<div class="slidetoexpand-content" >
+				<p class="card-title">Not sure. The ODT?</p>
+				</div>
+			</div>
+		</div>
+
+
+    </div>
+
+<script
+			  src="https://code.jquery.com/jquery-1.12.4.min.js"
+			  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+			  crossorigin="anonymous"></script>
+
+<script>
+$(".tile").click(function () {
+
+    $header = $(this).children().first().children().first();
+    //getting the next element
+    $content = $header.next();
+    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+    $content.slideToggle(500, function () {
+
+    });
+
+});
+  </script>
+
+{% endblock container %}

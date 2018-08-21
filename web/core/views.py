@@ -82,6 +82,14 @@ def location(request):
     return render(request, 'location.html')
 
 
+def classic(request):
+    return render(request, 'classic.html')
+
+
+def about(request):
+    return render(request, 'about.html')
+
+
 def post_vote_up(request, post_id):
     return vote(request, Post, post_id, +1, redirect_url=request.META.get('HTTP_REFERER'))
 

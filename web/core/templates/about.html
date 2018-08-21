@@ -1,0 +1,74 @@
+{% extends "_layout.html" %}
+
+{% block container %}
+
+<h1>AskOtago</h1>
+
+<p>If you're looking for information about the University of Otago, visit
+    <a href="https://ask.otago.ac.nz" target="_blank">ask.otago.ac.nz</a>.</p>
+
+<p>Critic was fortunate enough to purchase the domain names for
+    <a href="https://www.askotago.com">AskOtago.com</a> and
+    <a href="https://www.askotago.co.nz">AskOtago.co.nz</a>
+    before the University of Otago remembered to. So, we chucked
+    together a few questions and a quick Photoshop jobbie, and
+    <a href="{% url 'core:classic' %}">ended up with this.</a>
+</p>
+
+<p>Not wanting to half-ass it, AskOtago.com has been upgraded, and now anyone
+    can Ask Otago anything*. Post, comment, and vote to your hearts content.</p>
+
+<p>AskOtago is also a research project for SURV319 Geospatial Analysis and
+    Programming, undertaken by Alex McKirdy. When you post or comment, you have the
+    option of assigning a location nearby. What can we gather from this? Things like
+    which street has better banter - Castle or Hyde? Does everyone use AskOtago at
+    the end of their lectures? Is everything on this website fabricated in the
+    Critic office?</p>
+
+<h2>Guidelines</h2>
+
+<p>You might have noticed the asterisk in the above paragraph. AskOtago is
+    supposed to be some lighthearted fun (and subterfuge against the university).
+    However, to stop it from being complete carnage, there are some ground rules.</p>
+
+<ul>
+    <li>Don't be a dick.</li>
+    <li>No personal information (names or contact details).</li>
+    <li>No racism, sexism, *phobias, (see rule one)</li>
+</ul>
+
+<p>Note that content is filtered by Azure Content Moderator for the above
+    reasons - flagged content will be manually reviewed by moderators.</p>
+
+
+<h2>Data Collection</h2>
+
+<p><strong>Cookies: </strong>To ensure AskOtago functions correctly, cookies
+    must be enabled and stored on your device.</p>
+
+<p><strong>Third Party Providers: </strong>This website relies on Google
+    Analytics which may gather information about your usage of the site. Text
+    data is submitted to Microsoft Azure Content Moderator once it reaches our
+    server, in order to provide spam and explicit content filtering. Data is
+    stored on our hosting provider (currently Heroku). External libraries such
+    as jQuery, Bootstrap, and OpenStreetMap may also be loaded.</p>
+
+<p><strong>Data we collect: </strong></p>
+<ul>
+    <li>IP Address</li>
+    <li>Device information</li>
+    <li>Browser information</li>
+    <li>Reported location (returned by your browser)</li>
+    <li>Entered location (if picking a custom location)</li>
+</ul>
+
+<p><strong>Privacy Policy: </strong>I mean, it's probably not compliant with EU
+    regulations. End users may only access posts, comments, and vote summaries, and
+    locations are only displayed in aggregate form.</p>
+
+<h2>Source Code</h2>
+
+<p>Available at <a href="https://github.com/ajmck/feed" target="_blank">github.com/ajmck/feed</a>. Contributions
+    encouraged (please... I need help).</p>
+
+{% endblock container %}

@@ -65,6 +65,11 @@ input[type="checkbox"].input-validation-error {
     padding : 5px;
 }
 
+.container p {
+    /* copied from bootstrap.min.css li */
+    font-size: 17px;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
 
 
 .submission {
@@ -118,3 +123,9 @@ font-family: Verdana, sans-serif;
     position: relative;
     text-align: center;
 }
+
+.slidetoexpand-content {
+    display: none;
+    padding : 5px;
+}
+

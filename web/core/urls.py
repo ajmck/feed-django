@@ -13,4 +13,6 @@ urlpatterns = [
     path('c/<int:comment_id>/down', views.comment_vote_down, name='comment_vote_down'),
     path('c/<int:comment_id>/reset', views.comment_vote_reset, name='comment_vote_reset'),
     path('location', views.location, name='location'),
+    path('classic', views.classic, name='classic'),
+    path('about', views.about, name='about'),
 ]
