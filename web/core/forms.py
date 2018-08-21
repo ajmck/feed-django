@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Post, Comment
+from .models import Post, Comment, Landmark
 
 
 class PostForm(ModelForm):
@@ -19,3 +19,9 @@ class PostForm(ModelForm):
 class CommentForm(PostForm):
     class Meta(PostForm.Meta):
         model = Comment
+
+
+class LandmarkForm(ModelForm):
+    class Meta:
+        model = Landmark
+        fields = ['position', 'name']
