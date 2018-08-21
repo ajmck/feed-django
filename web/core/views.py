@@ -83,24 +83,24 @@ def location(request):
 
 
 def post_vote_up(request, post_id):
-    return vote(request, Post, post_id, +1)
+    return vote(request, Post, post_id, +1, redirect_url=request.META.get('HTTP_REFERER'))
 
 
 def post_vote_down(request, post_id):
-    return vote(request, Post, post_id, -1)
+    return vote(request, Post, post_id, -1, redirect_url=request.META.get('HTTP_REFERER'))
 
 
 def post_vote_reset(request, post_id):
-    return vote(request, Post, post_id, 0)
+    return vote(request, Post, post_id, 0, redirect_url=request.META.get('HTTP_REFERER'))
 
 
 def comment_vote_up(request, comment_id):
-    return vote(request, Comment, comment_id, +1)
+    return vote(request, Comment, comment_id, +1, redirect_url=request.META.get('HTTP_REFERER'))
 
 
 def comment_vote_down(request, comment_id):
-    return vote(request, Comment, comment_id, -1)
+    return vote(request, Comment, comment_id, -1, redirect_url=request.META.get('HTTP_REFERER'))
 
 
 def comment_vote_reset(request, comment_id):
-    return vote(request, Comment, comment_id, 0)
+    return vote(request, Comment, comment_id, 0, redirect_url=request.META.get('HTTP_REFERER'))
