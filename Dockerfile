@@ -5,6 +5,9 @@ MAINTAINER Maintainer Alex McKirdy
 
 ENV PYTHONBUFFERED 1
 
+ARG REQUIREMENTS=requirements/production.txt
+ENV DJANGO_SETTINGS_MODULE=feed.settings.production
+
 RUN apk add \
 	python3-dev \
 	py3-pip \
@@ -42,10 +45,10 @@ COPY web $CONTAINER_PROJECT
 # pip https://docs.docker.com/compose/django/
 RUN mkdir /code
 WORKDIR /code
-ADD web/requirements.txt /code/
+ADD web/requirements /code/requirements
 RUN pip3 install --upgrade pip
-RUN pip3 install -r requirements.txt
 ADD web /code/
+RUN pip3 install -r $REQUIREMENTS
 
 
 # Copy and set entrypoint

@@ -1,9 +1,8 @@
 Django==2.0
-gunicorn>19
+gunicorn==19.9.0
 pytz==2018.5
 psycopg2
 whitenoise==3.3.1
 dj-database-url==0.5.0
 djangorestframework==3.8.2
-wdb==3.2.4
 django-secretballot==1.0.0

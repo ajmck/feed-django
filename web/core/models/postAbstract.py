@@ -1,6 +1,6 @@
 from django.contrib.gis.db import models
 from django.utils import timezone
-from feed.settings import POST_BODY_LENGTH
+from feed.settings.base import POST_BODY_LENGTH
 import secretballot
 # Create your models here.
 
