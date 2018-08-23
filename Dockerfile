@@ -12,7 +12,6 @@ RUN apk add \
 	python3-dev \
 	py3-pip \
 	git \
-	py-gunicorn \
 	py-setuptools \
 	py3-psycopg2 \
 	netcat-openbsd
