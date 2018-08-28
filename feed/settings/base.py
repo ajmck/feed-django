@@ -3,19 +3,20 @@ import dj_database_url
 from django.utils import timezone
 import django.contrib.gis
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'c+%wxx2(2j^j28$p_dzuj0)hy=o66(8dn5v^^6)e@457n(3l2o'
+SECRET_KEY = os.getenv("SECRET_KEY", "SECRETKEYFALLBACK")
+
+ROOT_URLCONF = 'feed.urls'
+WSGI_APPLICATION = 'feed.wsgi.application'
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -27,8 +28,10 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'core.apps.CoreConfig',
     'rest_framework',
+    'rest_framework_gis',
     'secretballot',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -42,7 +45,6 @@ MIDDLEWARE = [
     'secretballot.middleware.SecretBallotIpUseragentMiddleware',
 ]
 
-ROOT_URLCONF = 'feed.urls'
 
 TEMPLATES = [
     {
@@ -61,26 +63,22 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'feed.wsgi.application'
-
-# print(os.getenv("DATABASE_URL"))
-# Database
-# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-DATABASES = {}
-DATABASES['default'] =  dj_database_url.config()
-DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
-# print(DATABASES)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     { 'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
     { 'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', },
     { 'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', },
     { 'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },
 ]
+
+
+# Database
+# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
+DATABASES = {}
+DATABASES['default'] =  dj_database_url.config()
+DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
 
 # Internationalization
@@ -105,3 +103,4 @@ STATIC_URL = "/static/"
 
 # Custom parameters
 POST_BODY_LENGTH = 300
+AZURE_CONTENT_MODERATOR_KEY = os.getenv("AZURE_CONTENT_MODERATOR_KEY")

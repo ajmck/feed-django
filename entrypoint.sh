@@ -7,9 +7,6 @@ touch ./logs/gunicorn.log
 touch ./logs/gunicorn-access.log
 tail -n 0 -f ./logs/gunicorn*.log &
 
-
-export DJANGO_SETTINGS_MODULE=feed.settings.production
-
 # wait for postgres to become available
 # https://stackoverflow.com/questions/31746182/docker-compose-wait-for-container-x-before-starting-y/41854997#41854997
 # while ! nc -z db 5432; do sleep 3; done
