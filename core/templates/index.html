@@ -14,7 +14,7 @@
 {# TODO - allow user customisable queries (hot in category, most votes...) #}
 
 {% for post in latest_posts %}
-<a href="{% url 'core:detail' post.id %}" style="text-decoration: none;">
+<a href="{% url 'core:detail' post.id %}" style="text-decoration: none;" id="POST_{{ post.id }}">
     <div class="post post-hover card mb-3">
         <div class="card-body">
 
@@ -30,7 +30,7 @@
             </div>
 
 
-            <div class="post-voting">
+            <div class="post-voting vote">
                 <table>
                     <tr><td>
                         <a href="{% url 'core:post_vote_up' post.id %}">

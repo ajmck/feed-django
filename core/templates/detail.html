@@ -13,7 +13,7 @@
         </div>
 
 
-        <div class="post-voting">
+        <div class="post-voting vote">
             <table>
                 <tr><td>
                     <a href="{% url 'core:post_vote_up' post.id %}">
@@ -36,7 +36,7 @@
 {% if comments %}
     {% for comment in comments %}
 
-<div class="post post-hover card mb-3">
+<div class="post post-hover card mb-3" id="COMMENT_{{ comment.id }}">
     <div class="card-body">
 
         <div class="post-novoting">
@@ -47,7 +47,7 @@
         </div>
 
 
-        <div class="post-voting">
+        <div class="post-voting vote">
             <table>
                 <tr><td>
                     <a href="{% url 'core:comment_vote_up' comment.id %}">
