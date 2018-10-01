@@ -2,13 +2,41 @@
 {% load humanize %}
 {% block container %}
 
-<h2>{{ post.body }}</h2>
+<div class="post post-hover card mb-3">
+    <div class="card-body">
+
+        <div class="post-novoting">
+                <h1>{{ post.body }}</h1>
+                <div class="post-details">
+                    <span class="far fa-clock"></span>&nbsp;{{ post.pub_date | naturaltime }}
+                </div>
+        </div>
+
+
+        <div class="post-voting vote">
+            <table>
+                <tr><td>
+                    <a href="{% url 'core:post_vote_up' post.id %}">
+                        <span class="fas fa-chevron-up"></span>
+                    </a>
+                </td></tr>
+                <tr><td><span>{{ post.vote_total }}</span></td></tr>
+                <tr><td>
+                    <a href="{% url 'core:post_vote_down' post.id %}">
+                        <span class="fas fa-chevron-down"></span>
+                    </a>
+                </td></tr>
+            </table>
+
+        </div>
+    </div>
+</div>
 <hr />
 
 {% if comments %}
     {% for comment in comments %}
 
-<div class="post post-hover card mb-3">
+<div class="post post-hover card mb-3" id="COMMENT_{{ comment.id }}">
     <div class="card-body">
 
         <div class="post-novoting">
@@ -19,7 +47,7 @@
         </div>
 
 
-        <div class="post-voting">
+        <div class="post-voting vote">
             <table>
                 <tr><td>
                     <a href="{% url 'core:comment_vote_up' comment.id %}">

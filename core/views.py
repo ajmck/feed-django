@@ -5,6 +5,7 @@ from .models import Post, Comment
 from .forms import PostForm, CommentForm
 from django.contrib.gis.geos import Point
 from secretballot.views import vote
+from feed.settings.base import GOOGLE_ANALYTICS_KEY
 
 
 # Create your views here.
@@ -35,7 +36,8 @@ def index(request):
     latest_posts = Post.objects.order_by('-pub_date')
     context = {
         'latest_posts' : latest_posts,
-        'submission' : submission
+        'submission' : submission,
+        'GA_KEY': GOOGLE_ANALYTICS_KEY
     }
     return render(request, 'index.html', context)
     # return render_to_response('core/index.html', context)
@@ -72,22 +74,32 @@ def detail(request, post_id):
     context = {
         'post': post,
         'submission': submission,
-        'comments': comments
+        'comments': comments,
+        'GA_KEY': GOOGLE_ANALYTICS_KEY
     }
 
     return render(request, 'detail.html', context)
 
 
 def location(request):
-    return render(request, 'location.html')
+    context = {
+        'GA_KEY': GOOGLE_ANALYTICS_KEY
+    }
+    return render(request, 'location.html', context)
 
 
 def classic(request):
-    return render(request, 'classic.html')
+    context = {
+        'GA_KEY': GOOGLE_ANALYTICS_KEY
+    }
+    return render(request, 'classic.html', context)
 
 
 def about(request):
-    return render(request, 'about.html')
+    context = {
+        'GA_KEY': GOOGLE_ANALYTICS_KEY
+    }
+    return render(request, 'about.html', context)
 
 
 def post_vote_up(request, post_id):

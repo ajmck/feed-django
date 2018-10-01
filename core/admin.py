@@ -4,7 +4,7 @@ from django.contrib.gis.admin import OSMGeoAdmin
 
 # unsure if below line works right, may need to be admin widget
 from django.contrib.gis.forms.widgets import OSMWidget
-from .models import Post, Comment, Landmark
+from .models import Post, Comment
 # Register your models here.
 
 
@@ -35,4 +35,3 @@ class LocationAdmin(OSMGeoAdmin):
 
 
 admin.site.register(Post, PostAdmin)
-admin.site.register(Landmark, LocationAdmin)

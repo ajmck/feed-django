@@ -129,3 +129,19 @@ font-family: Verdana, sans-serif;
     padding : 5px;
 }
 
+
+
+.vote a {
+    /* plain colour for no vote */
+    color: #1b1b1b;
+}
+
+.vote-up a .fa-chevron-up {
+    /* only highlight up arrow on upvote */
+    color: rgb(255, 193, 14);
+}
+
+.vote-down a .fa-chevron-down {
+    /* only highlight down arrow on downvote */
+    color: rgb(255, 193, 14);
+}
