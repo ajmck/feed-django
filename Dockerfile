@@ -5,6 +5,7 @@ MAINTAINER Maintainer Alex McKirdy
 
 ENV PYTHONBUFFERED 1
 
+# nb - settings module will fall back to .env defined in docker-compose
 ARG REQUIREMENTS=requirements/production.txt
 ENV DJANGO_SETTINGS_MODULE=feed.settings.production
 

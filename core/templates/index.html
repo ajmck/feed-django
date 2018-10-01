@@ -7,14 +7,30 @@
 {% block submitform %}
     {% include "_submitform.html" %}
 {% endblock %}
-    
+
+    {%  if ENABLE_DISCLAIMER %}
+
+
+    <div class="post card bg-danger mb-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h4>This is a development website. Things will break, and content will disappear.</h4>
+                    <h4><a href="https://github.com/ajmck/Feed" target="_blank">Source code here.</a></h4>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {%  endif %}
 
 {% if latest_posts %}
 
 {# TODO - allow user customisable queries (hot in category, most votes...) #}
 
 {% for post in latest_posts %}
-<a href="{% url 'core:detail' post.id %}" style="text-decoration: none;" id="POST_{{ post.id }}">
+<a href="{% url 'core:detail' post.id %}" style="text-decoration: none;">
     <div class="post post-hover card mb-3">
         <div class="card-body">
 

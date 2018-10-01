@@ -101,7 +101,28 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
 
 
+def tinybool(b):
+    """
+    Fun facts about OS.getenv:
+
+    If a variable is defined in a .env file but contains no value, it will treat the value as "" instead of None
+    Consequently, it won't fall back to the second argument of os.getenv()
+    """
+    if b is None:
+        return False
+    if isinstance(b, bool):
+        # possible point of failure
+        return b
+    if str(b).lower() == 'true':
+        return True
+    if str(b).lower() == 'false' or str(b) == "":
+        return False
+    else:
+        raise RuntimeError("Invalid boolean value: " + b)
+
+
 # Custom parameters
 POST_BODY_LENGTH = 300
 AZURE_CONTENT_MODERATOR_KEY = os.getenv("AZURE_CONTENT_MODERATOR_KEY")
 GOOGLE_ANALYTICS_KEY = os.getenv("GOOGLE_ANALYTICS_KEY")
+ENABLE_LOCATION = tinybool(os.getenv("ENABLE_LOCATION", True))
