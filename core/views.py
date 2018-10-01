@@ -5,7 +5,21 @@ from .models import Post, Comment
 from .forms import PostForm, CommentForm
 from django.contrib.gis.geos import Point
 from secretballot.views import vote
-from feed.settings.base import GOOGLE_ANALYTICS_KEY
+from django.conf import settings
+
+
+# Helper method to propogate environment variables
+def create_context(c=None):
+    default_context = {
+        'GA_KEY': settings.GOOGLE_ANALYTICS_KEY,
+        'ENABLE_LOCATION': settings.ENABLE_LOCATION,
+        'ENABLE_DISCLAIMER': settings.ENABLE_DISCLAIMER
+    }
+
+    if c is None:
+        return default_context
+    else:
+        return {**default_context, **c}
 
 
 # Create your views here.
@@ -34,11 +48,8 @@ def index(request):
 
     submission = PostForm()
     latest_posts = Post.objects.order_by('-pub_date')
-    context = {
-        'latest_posts' : latest_posts,
-        'submission' : submission,
-        'GA_KEY': GOOGLE_ANALYTICS_KEY
-    }
+
+    context = create_context({'latest_posts': latest_posts, 'submission': submission})
     return render(request, 'index.html', context)
     # return render_to_response('core/index.html', context)
 
@@ -71,35 +82,24 @@ def detail(request, post_id):
     submission = CommentForm()
     # comments_fk is the related name of parent, in the comments class
     comments = post.comments_fk.all()
-    context = {
-        'post': post,
-        'submission': submission,
-        'comments': comments,
-        'GA_KEY': GOOGLE_ANALYTICS_KEY
-    }
+    context = create_context().copy()
+    context['post'] = post
+    context['submission'] = submission
+    context['comments'] = comments
 
     return render(request, 'detail.html', context)
 
 
 def location(request):
-    context = {
-        'GA_KEY': GOOGLE_ANALYTICS_KEY
-    }
-    return render(request, 'location.html', context)
+    return render(request, 'location.html', create_context(None))
 
 
 def classic(request):
-    context = {
-        'GA_KEY': GOOGLE_ANALYTICS_KEY
-    }
-    return render(request, 'classic.html', context)
+    return render(request, 'classic.html', create_context(None))
 
 
 def about(request):
-    context = {
-        'GA_KEY': GOOGLE_ANALYTICS_KEY
-    }
-    return render(request, 'about.html', context)
+    return render(request, 'about.html', create_context(None))
 
 
 def post_vote_up(request, post_id):

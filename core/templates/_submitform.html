@@ -8,6 +8,11 @@
 
         {% csrf_token %}
 
+        {% block additional-hidden-input %}
+        {% endblock %}
+
+
+        {% if ENABLE_LOCATION %}
         {# location hidden values #}
         <input id="form-lat"
                name="latitude"
@@ -17,12 +22,13 @@
                name="longitude"
                type="hidden">
 
-        {% block additional-hidden-input %}
-        {% endblock %}
+        {% endif %}
 
         {# text form #}
         <div class="submission input-group mb-3">
 
+
+            {% if ENABLE_LOCATION %}
             {# TODO: Stop redirect on click #}
             {# nb. class changes in location.js (for colour of button) #}
             <button class="input-group-prepend btn btn-default"
@@ -31,6 +37,8 @@
                     style="border-radius: 0px;">
                 <span class="fa fa-location-arrow"></span>
             </button>
+
+            {% endif %}
 
     <textarea
             rows="2"

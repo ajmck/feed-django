@@ -8,6 +8,8 @@
     {% include "_submitform.html" %}
 {% endblock %}
 
+    {%  if ENABLE_DISCLAIMER %}
+
 
     <div class="post card bg-danger mb-3">
         <div class="card-body">
@@ -21,6 +23,7 @@
         </div>
     </div>
 
+    {%  endif %}
 
 {% if latest_posts %}
 
