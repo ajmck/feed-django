@@ -125,7 +125,4 @@ def tinybool(b):
 POST_BODY_LENGTH = 300
 AZURE_CONTENT_MODERATOR_KEY = os.getenv("AZURE_CONTENT_MODERATOR_KEY")
 GOOGLE_ANALYTICS_KEY = os.getenv("GOOGLE_ANALYTICS_KEY")
-
-# If neither of these are set, assume it's a development site and enable it
-ENABLE_DISCLAIMER = tinybool(os.getenv("ENABLE_DISCLAIMER", True))
 ENABLE_LOCATION = tinybool(os.getenv("ENABLE_LOCATION", True))

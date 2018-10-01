@@ -8,12 +8,12 @@ from secretballot.views import vote
 from django.conf import settings
 
 
-# Helper method to propogate environment variables
+# Helper method to propagate environment variables
 def create_context(c=None):
     default_context = {
         'GA_KEY': settings.GOOGLE_ANALYTICS_KEY,
         'ENABLE_LOCATION': settings.ENABLE_LOCATION,
-        'ENABLE_DISCLAIMER': settings.ENABLE_DISCLAIMER
+        'ENABLE_DISCLAIMER': settings.ENABLE_DISCLAIMER,
     }
 
     if c is None:
@@ -82,11 +82,11 @@ def detail(request, post_id):
     submission = CommentForm()
     # comments_fk is the related name of parent, in the comments class
     comments = post.comments_fk.all()
-    context = create_context().copy()
-    context['post'] = post
-    context['submission'] = submission
-    context['comments'] = comments
-
+    context = create_context({
+        'post': post,
+        'submission': submission,
+        'comments': comments,
+    })
     return render(request, 'detail.html', context)
 
 

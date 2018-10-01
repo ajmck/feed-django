@@ -8,4 +8,4 @@ ALLOWED_HOSTS = [".askotago.com",
     "askotagodev.herokuapp.com",
     "127.0.0.1"]
 
-ENABLE_DISCLAIMER = False    # This will override OS environ
+ENABLE_DISCLAIMER = False
