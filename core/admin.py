@@ -11,21 +11,32 @@ from .models import Post, Comment
 # Register your models here.
 
 
+# class PostMeshblockInline(admin.StackedInline):
+#     model = Meshblock
+#     fk_name = "post_meshblock"
+
+
 class CommentInline(admin.TabularInline):
     model = Comment
     fk_name = "parent"
     extra = 0
-    readonly_fields = ["pub_date"]
+    readonly_fields = ["pub_date", "post_meshblock"]
+    raw_id_fields = ["post_meshblock"]
     formfield_overrides = {models.PointField: {'widget': OSMWidget}}
 
 
 class PostAdmin(admin.ModelAdmin):
     model = Post
-    readonly_fields = ["pub_date"]
+    readonly_fields = ["pub_date", "post_meshblock"]
     inlines = [
         CommentInline,
+        # PostMeshblockInline,
     ]
-    formfield_overrides = {models.PointField: {'widget': OSMWidget}}
+    raw_id_fields = ["post_meshblock"]
+    formfield_overrides = {
+        models.PointField: {'widget': OSMWidget},
+        #   models.MultiPolygonField: {'widget': OSMWidget}
+    }
 
 
 class MeshblockAdmin(OSMGeoAdmin):

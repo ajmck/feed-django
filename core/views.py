@@ -1,6 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, render_to_response
 from django.template import loader
+
+from core.models import Meshblock
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
 from django.contrib.gis.geos import Point
@@ -22,6 +24,32 @@ def create_context(c=None):
         return {**default_context, **c}
 
 
+# helper method to save location in posts
+def add_location(post, submission):
+    try:
+        lat = float(submission.data['latitude'])
+        lon = float(submission.data['longitude'])
+        if lat is not None and lon is not None:
+            # What the FUCK
+            # Points require longitude before latitude
+            # https://stackoverflow.com/questions/30823988/geodjango-converting-srid-4326-to-srid-3857
+            post.post_location = Point(x=lon, y=lat)
+
+            try:
+                mesh = Meshblock.objects.get(geom__contains=post.post_location)
+            except Meshblock.DoesNotExist:
+                mesh = None
+                # the other one to catch would be Meshblock.MultipleObjectsReturned
+            finally:
+                post.post_meshblock = mesh
+
+    except Exception as e:
+        print(e)
+        post.post_location = None
+
+    return post
+
+
 # Create your views here.
 def index(request):
     if request.method == 'POST':
@@ -30,19 +58,7 @@ def index(request):
         if submission.is_valid():
             new_post = Post()
             new_post.body = submission.cleaned_data['body']
-
-            try:
-                lat = float(submission.data['latitude'])
-                lon = float(submission.data['longitude'])
-                if lat is not None and lon is not None:
-                    # What the FUCK
-                    # Points require longitude before latitude
-                    # https://stackoverflow.com/questions/30823988/geodjango-converting-srid-4326-to-srid-3857
-                    new_post.post_location = Point(x=lon, y=lat)
-            except Exception as e:
-                print(e)
-                new_post.post_location = None
-
+            new_post = add_location(new_post, submission)
             new_post.save()
             return HttpResponseRedirect('/')
 
@@ -62,19 +78,7 @@ def detail(request, post_id):
         if submission.is_valid():
             new_comment = Comment()
             new_comment.parent = post
-
-            try:
-                lat = float(submission.data['latitude'])
-                lon = float(submission.data['longitude'])
-                if lat is not None and lon is not None:
-                    # What the FUCK
-                    # Points require longitude before latitude
-                    # https://stackoverflow.com/questions/30823988/geodjango-converting-srid-4326-to-srid-3857
-                    new_comment.post_location = Point(x=lon, y=lat)
-            except Exception as e:
-                print(e)
-                new_comment.post_location = None
-
+            new_comment = add_location(new_comment, submission)
             new_comment.body = submission.cleaned_data['body']
             new_comment.save()
             return HttpResponseRedirect('/' + str(post_id))

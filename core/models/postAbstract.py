@@ -1,5 +1,8 @@
 from django.contrib.gis.db import models
+from django.db.models import CASCADE
 from django.utils import timezone
+
+from .meshblock import Meshblock
 from feed.settings.base import POST_BODY_LENGTH
 import secretballot
 # Create your models here.
@@ -40,6 +43,8 @@ class PostAbstract(models.Model):
                                   choices=MODERATION_CHOICES,
                                   default=NOT_REVIEWED,)
 
+    post_meshblock = models.ForeignKey(Meshblock, on_delete=CASCADE, null=True, blank=True)
+    # related_name='post_meshblock_fk')
 
     def __str__(self):
         return self.body
