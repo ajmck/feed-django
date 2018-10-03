@@ -1,11 +1,16 @@
 # Base Image - Alpine Linux
 FROM alpine:3.8
 
-MAINTAINER Maintainer Alex McKirdy
+MAINTAINER Alex McKirdy
 
 ENV PYTHONBUFFERED 1
+ENV PROJECT=feed
+ENV CONTAINER_HOME=/opt
+ENV CONTAINER_PROJECT=$CONTAINER_HOME/$PROJECT
 
 # nb - settings module will fall back to .env defined in docker-compose
+# defined here for Heroku use
+# Also, note that at the time of writing the only package in requirements/debug.txt is wdb debugger
 ARG REQUIREMENTS=requirements/production.txt
 ENV DJANGO_SETTINGS_MODULE=feed.settings.production
 
@@ -31,24 +36,23 @@ RUN apk add --no-cache --virtual .build-deps-testing \
 	proj4 \
 	py-gdal
 
-ENV PROJECT=feed
-ENV CONTAINER_HOME=/opt
-ENV CONTAINER_PROJECT=$CONTAINER_HOME/$PROJECT
-
-# Create application subdirectories
-WORKDIR $CONTAINER_HOME
-RUN mkdir logs
-
-# Copy application source code to $CONTAINER_PROJECT
-COPY . $CONTAINER_PROJECT
 
 # pip https://docs.docker.com/compose/django/
 RUN mkdir /code
 WORKDIR /code
 ADD requirements /code/requirements
 RUN pip3 install --upgrade pip
-ADD . /code/
+# ADD . /code/
 RUN pip3 install -r $REQUIREMENTS
+
+
+# Create application subdirectories
+WORKDIR $CONTAINER_HOME
+RUN mkdir logs
+
+# Copy application source code to $CONTAINER_PROJECT
+# Done after installing dependencies to reduce build time
+COPY . $CONTAINER_PROJECT
 
 
 # Copy and set entrypoint
