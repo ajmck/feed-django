@@ -1,0 +1,23 @@
+{% extends "_layout.html" %}
+{% load static %}
+
+{% block extrahead %}
+    <link rel="stylesheet" type="text/css" href="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'core/here/ui.css' %}">
+{% endblock extrahead %}
+
+{% block container %}
+
+
+        <div class="dl-map"></div>
+    <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+    <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-clustering.js"></script>
+    <script type="text/javascript" src="https://js.cit.datalens.api.here.com/latest/mapsjs-datalens.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript" src="{%  static 'core/here/ui.js' %}"></script>
+    <script type="text/javascript" src="{%  static 'core/here/index.js' %}"></script>
+
+{% endblock container %}
