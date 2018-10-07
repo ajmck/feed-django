@@ -6,10 +6,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'core/here/ui.css' %}">
 {% endblock extrahead %}
 
-{% block container %}
+{% block bodywithheader %}
 
-
-        <div class="dl-map"></div>
+{%  if not HERE_APP_ID %}
+    <p>Internal error: HERE_APP_ID not loaded as environment variable.</p>
+{% endif %}
+    <div class="dl-map"></div>
     <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-core.js"></script>
     <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-service.js"></script>
     <script type="text/javascript" src="https://js.cit.api.here.com/v3/3.0/mapsjs-ui.js"></script>
@@ -20,4 +22,4 @@
     <script type="text/javascript" src="{%  static 'core/here/ui.js' %}"></script>
     <script type="text/javascript" src="{%  static 'core/here/index.js' %}"></script>
 
-{% endblock container %}
+{% endblock bodywithheader %}

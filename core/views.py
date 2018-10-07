@@ -107,7 +107,11 @@ def about(request):
 
 
 def here(request):
-    return render(request, 'here.html', create_context(None))
+    context = create_context({
+        'HERE_APP_ID': settings.HERE_APP_ID,
+        'HERE_APP_CODE': settings.HERE_APP_CODE
+    })
+    return render(request, 'here.html', context)
 
 
 def post_vote_up(request, post_id):
