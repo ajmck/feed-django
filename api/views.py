@@ -13,3 +13,4 @@ class PostViewSet(viewsets.ModelViewSet):
 class MeshblockViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Meshblock.objects.all()
     serializer_class = MeshblockSerializer
+
