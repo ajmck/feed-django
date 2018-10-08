@@ -17,8 +17,8 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Post
-        # fields = '__all__'
-        exclude = ['moderation']
+        fields = '__all__'
+        # exclude = ['moderation']
 
     def create(self, validated_data):
         return Post.objects.create(**validated_data)
