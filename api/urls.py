@@ -1,9 +1,10 @@
 from django.conf.urls import url, include
 from rest_framework import routers
-from .views import PostViewSet
+from .views import PostViewSet, MeshblockViewSet
 
 router = routers.DefaultRouter()
 router.register(r'posts', PostViewSet)
+router.register(r'meshblocks', MeshblockViewSet)
 
 
 # Wire up our API using automatic URL routing.

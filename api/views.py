@@ -1,6 +1,6 @@
-from core.models import Post, Comment
+from core.models import Post, Comment, Meshblock
 from rest_framework import viewsets
-from .serializers import PostSerializer
+from .serializers import PostSerializer, MeshblockSerializer
 
 class PostViewSet(viewsets.ModelViewSet):
     """
@@ -8,3 +8,8 @@ class PostViewSet(viewsets.ModelViewSet):
     """
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+
+class MeshblockViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Meshblock.objects.all()
+    serializer_class = MeshblockSerializer

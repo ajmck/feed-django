@@ -1,7 +1,7 @@
-from core.models import Post, Comment
+from core.models import Post, Comment, Meshblock
 from feed.settings.base import POST_BODY_LENGTH
 from rest_framework import serializers
-from rest_framework_gis import serializers as geoserializers
+from rest_framework_gis.serializers import GeoFeatureModelSerializer
 
 
 class PostAbstractPOSTSerializer(serializers.BaseSerializer):
@@ -21,3 +21,10 @@ class PostSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         return Post.objects.create(**validated_data)
 
+
+
+
+class MeshblockSerializer(GeoFeatureModelSerializer):
+    class Meta:
+        model = Meshblock
+        geo_field = "geom"
