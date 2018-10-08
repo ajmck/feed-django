@@ -121,6 +121,12 @@ def tinybool(b):
         raise RuntimeError("Invalid boolean value: " + b)
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
+}
+
+
 # Custom parameters
 POST_BODY_LENGTH = 300
 AZURE_CONTENT_MODERATOR_KEY = os.getenv("AZURE_CONTENT_MODERATOR_KEY")

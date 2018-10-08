@@ -28,3 +28,4 @@ class MeshblockSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = Meshblock
         geo_field = "geom"
+        fields = "__all__"
