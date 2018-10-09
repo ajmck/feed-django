@@ -1,0 +1,9 @@
+.fillmap {
+    width: 100%;
+    min-height: 300px;
+    height: calc(100% - 75px); /* 75px as height of banner */
+}
+
+html, body {
+    height: 100%;
+}

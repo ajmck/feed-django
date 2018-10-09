@@ -102,6 +102,12 @@ def about(request):
     return render(request, 'about.html', create_context(None))
 
 
+def leaflet(request):
+    return render(request, 'leaflet.html', create_context({
+        "MAPBOX_KEY" : settings.MAPBOX_KEY,
+    }))
+
+
 def here(request):
     context = create_context({
         'HERE_APP_ID': settings.HERE_APP_ID,

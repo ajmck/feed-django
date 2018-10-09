@@ -135,3 +135,5 @@ ENABLE_LOCATION = tinybool(os.getenv("ENABLE_LOCATION", True))
 HERE_APP_ID = os.getenv("HERE_APP_ID")
 HERE_APP_CODE = os.getenv("HERE_APP_CODE")
 ENABLE_API = tinybool(os.getenv("ENABLE_API", True))
+MAPBOX_KEY = os.getenv("MAPBOX_KEY")
+
