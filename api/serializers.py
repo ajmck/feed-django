@@ -3,6 +3,7 @@ from rest_framework import serializers
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 
 
+
 class MeshblockSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = Meshblock
@@ -11,7 +12,7 @@ class MeshblockSerializer(GeoFeatureModelSerializer):
 
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
-    total_upvotes  = serializers.IntegerField(read_only=True)
+    total_upvotes = serializers.IntegerField(read_only=True)
     total_downvotes = serializers.IntegerField(read_only=True)
     vote_total = serializers.IntegerField(read_only=True)
 
@@ -22,3 +23,14 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
 
     def create(self, validated_data):
         return Post.objects.create(**validated_data)
+
+
+class PostGeoJsonSerializer(GeoFeatureModelSerializer):
+    total_upvotes = serializers.IntegerField(read_only=True)
+    total_downvotes = serializers.IntegerField(read_only=True)
+    vote_total = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = Post
+        geo_field = "post_location"
+        fields = '__all__'
