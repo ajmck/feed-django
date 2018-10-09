@@ -94,10 +94,6 @@ def detail(request, post_id):
     return render(request, 'detail.html', context)
 
 
-def location(request):
-    return render(request, 'location.html', create_context(None))
-
-
 def classic(request):
     return render(request, 'classic.html', create_context(None))
 
