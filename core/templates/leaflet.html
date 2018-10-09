@@ -12,6 +12,12 @@
       integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
       crossorigin=""></script>
 
+    {# jquery for AJAX requests #}
+    <script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+
 {% endblock extrahead %}
 
 
@@ -27,8 +33,8 @@
 <script>
 
     var m = L.map('map', {
-        center: [51.505, -0.09],
-        zoom: 13
+        center: [-45.878, 170.502], //dunedin
+        zoom: 12
     });
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={{ MAPBOX_KEY }}', {
@@ -37,6 +43,24 @@
     id: 'mapbox.streets'
     }).addTo(m);
 
+
+    // add posts
+    // https://medium.com/@maptastik/loading-external-geojson-a-nother-way-to-do-it-with-jquery-c72ae3b41c01
+
+    var posts = $.ajax({
+        url:"/api/geo/?format=json",
+        dataType: "json",
+        success: console.log("Data loaded"), //yeet
+        error: function (xhr) {
+            console.log(xhr.statusText)
+
+        }
+    });
+
+
+    $.when(posts).done(function () {
+        L.geoJSON(posts.responseJSON.results).addTo(m);
+    });
 
 </script>
 
