@@ -59,7 +59,12 @@
 
 
     $.when(posts).done(function () {
-        L.geoJSON(posts.responseJSON.results).addTo(m);
+        L.geoJSON(posts.responseJSON.results, {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup('<p>'+feature.properties.body+'</p>');
+
+            }
+        }).addTo(m);
     });
 
 </script>
