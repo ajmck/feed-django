@@ -11,4 +11,16 @@ class Meshblock(models.Model):
     name = models.TextField(blank=True, null=True)
 
 
+    def __unicode__(self):
+        if self.name is not None:
+            return self.name
+        return str(self.id)
+
+    def __str__(self):
+        if self.name is not None:
+            return self.name
+        return str(self.id)
+
+
 secretballot.enable_voting_on(Meshblock)
+# NB: at this stage voting only works on parent posts, modify voting methods in views.py to modify

@@ -9,7 +9,16 @@
                 <h1>{{ post.body }}</h1>
                 <div class="post-details">
                     <span class="far fa-clock"></span>&nbsp;{{ post.pub_date | naturaltime }}
-                </div>
+
+
+
+
+                {% if post.post_meshblock %}
+                    <span style="min-width: 3em;"></span>
+                    <span class="fas fa-map-marker-alt"></span>&nbsp;{{ post.post_meshblock }}
+                {% endif %}
+                                </div>
+
         </div>
 
 
@@ -43,6 +52,10 @@
                 {{ comment.body }}
                 <div class="post-details">
                     <span class="far fa-clock"></span>&nbsp;{{ comment.pub_date | naturaltime }}
+                    {% if comment.post_meshblock %}
+                        <span style="min-width: 3em;"></span>
+                        <span class="fas fa-map-marker-alt"></span>&nbsp;{{ comment.post_meshblock }}
+                    {% endif %}
                 </div>
         </div>
 

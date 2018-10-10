@@ -40,8 +40,13 @@
 
                     <div class="post-details">
                         <span class="fas fa-comments" ></span>&nbsp;{{post.comments_fk.all|length}}
-                        <span style="min-width: 2em;"></span>
+                        <span style="min-width: 3em;"></span>
                         <span class="far fa-clock"></span>&nbsp;{{ post.pub_date | naturaltime }}
+                        <span style="min-width: 3em;"></span>
+
+                        {% if post.post_meshblock %}
+                        <span class="fas fa-map-marker-alt"></span>&nbsp;{{ post.post_meshblock }}
+                        {% endif %}
                     </div>
             </div>
 
