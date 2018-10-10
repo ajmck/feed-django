@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404, render_to_response
+from django.shortcuts import render, get_object_or_404
 from django.template import loader
 
 from core.models import Meshblock
@@ -117,14 +117,24 @@ def here(request):
 
 
 def post_vote_up(request, post_id):
+    # get object for purpose of meshblock voting
+    p = get_object_or_404(Post, pk=post_id)
+    if p.post_meshblock is not None:
+        vote(request, Meshblock, p.post_meshblock.id, +1)
     return vote(request, Post, post_id, +1, redirect_url=request.META.get('HTTP_REFERER'))
 
 
 def post_vote_down(request, post_id):
+    p = get_object_or_404(Post, pk=post_id)
+    if p.post_meshblock is not None:
+        vote(request, Meshblock, p.post_meshblock.id, -1)
     return vote(request, Post, post_id, -1, redirect_url=request.META.get('HTTP_REFERER'))
 
 
 def post_vote_reset(request, post_id):
+    p = get_object_or_404(Post, pk=post_id)
+    if p.post_meshblock is not None:
+        vote(request, Meshblock, p.post_meshblock.id, 0)
     return vote(request, Post, post_id, 0, redirect_url=request.META.get('HTTP_REFERER'))
 
 

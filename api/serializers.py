@@ -5,6 +5,10 @@ from rest_framework_gis.serializers import GeoFeatureModelSerializer
 
 
 class MeshblockSerializer(GeoFeatureModelSerializer):
+    total_upvotes = serializers.IntegerField(read_only=True)
+    total_downvotes = serializers.IntegerField(read_only=True)
+    vote_total = serializers.IntegerField(read_only=True)
+    
     class Meta:
         model = Meshblock
         geo_field = "geom"
