@@ -22,7 +22,9 @@ urlpatterns = [
     path('', include('core.urls')),
 ]
 
-
+# If this is allowed to run, migrations can fail
+# Comment out if you receive an error
+# psycopg2.ProgrammingError: relation "django_content_type" does not exist
 if settings.ENABLE_API:
     urlpatterns.append(path('api/', include('api.urls')))
 
