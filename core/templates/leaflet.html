@@ -137,7 +137,7 @@
 
     // method that we will use to update the control based on feature properties passed
     info.update = function (props) {
-        this._div.innerHTML =  (props ? '<h4>' + props.name_or_id + '</h4>'
+        this._div.innerHTML =  (props ? '<h4>' + props.name_or_id + '</h4>' + "<strong>Post count: </strong><p>" + props.count_posts + "</p>"
             : 'Hover over a block');
     };
 

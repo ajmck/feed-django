@@ -42,8 +42,8 @@ class PostAbstract(models.Model):
                                   choices=MODERATION_CHOICES,
                                   default=NOT_REVIEWED,)
 
-    post_meshblock = models.ForeignKey(Meshblock, on_delete=CASCADE, null=True, blank=True)
-    # related_name='post_meshblock_fk')
+    post_meshblock = models.ForeignKey(Meshblock, on_delete=CASCADE, null=True, blank=True,
+                                       related_name='post_meshblock_fk')
 
     def __str__(self):
         return self.body
