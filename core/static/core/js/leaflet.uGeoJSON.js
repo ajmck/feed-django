@@ -88,7 +88,7 @@
         var data = JSON.parse(this.response);
         data = data.results;
 
-        console.log(data);
+        // console.log(data);
         if (self.options.transformData) {
           data = self.options.transformData(data);
         }

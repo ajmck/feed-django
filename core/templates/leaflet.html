@@ -73,15 +73,20 @@
 
 
 
-    function getColor(up, down) {
-        return up === 0 ? '#FFFFFF' :
-            '#000000';
+    function getColor(score, count) {
+        //console.log(count);
+        if (count === 0) return 'rgb(255,255,255)';                               // no posts, white cell
+        else if (score < 0) return 'rgb(' + Math.abs(score) * 255 + ', 0, 0)';    // negative value, red cell
+        else if (score > 0) return 'rgb(0, 0, ' + score * 255 + ')';              // positive value, blue cell
+        else return 'rgb(0, 0, 0)';                                              // neutral posts, black
     }
 
 
     function custstyle(feature) {
+
         return {
-            fillColor: getColor(feature.properties.total_upvotes, feature.properties.total_downvotes),
+
+            fillColor: getColor(feature.properties.score_cell, feature.properties.count_posts),
             weight: 1,
             opacity: 1,
             color: 'black',
