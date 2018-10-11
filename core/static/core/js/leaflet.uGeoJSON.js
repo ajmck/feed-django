@@ -54,7 +54,8 @@
 
     var bounds = this._map.getBounds();
     if (this.options.usebbox) {
-      postData.bbox = bounds.toBBoxString();
+      console.log(bounds.toBBoxString());
+      postData.in_bbox = bounds.toBBoxString();
     } else {
       postData.south = bounds.getSouth();
       postData.north = bounds.getNorth();
@@ -65,7 +66,7 @@
 
     var self = this;
     var request = new XMLHttpRequest();
-    request.open('POST', this.options.endpoint, true);
+    request.open('GET', this.options.endpoint + "&in_bbox=" + bounds.toBBoxString(), true);
     for(var l in this.options.headers) {
       if (typeof this.options.headers[l].scope !== 'undefined') {
         request.setRequestHeader(l, this.options.headers[l].scope[l]);
@@ -83,8 +84,11 @@
       }
 
       if (this.status >= 200 && this.status < 400) {
-        var data = JSON.parse(this.responseText);
+        console.log(this);
+        var data = JSON.parse(this.response);
+        data = data.results;
 
+        console.log(data);
         if (self.options.transformData) {
           data = self.options.transformData(data);
         }

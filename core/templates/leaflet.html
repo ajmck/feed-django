@@ -60,16 +60,6 @@
     });
 
 
-    var blocks = $.ajax({
-        url: "/api/meshblocks/?format=json", //&in_bbox=172,-35,173,-34",
-        dataType: "json",
-        success: console.log("Data loaded"), //yeet
-        error: function (xhr) {
-            console.log(xhr.statusText)
-
-        }
-    })
-
     var myStyle = {
         "color": "#ff7800",
         "weight": 5,
@@ -87,18 +77,10 @@
     });
 
 
-
-    $.when(blocks).done(function () {
-        L.geoJSON(blocks.responseJSON.results, {
-            style: myStyle,
-            onEachFeature: function (feature, layer) {
-                layer.bindPopup('<p>'+feature.id+'</p>');
-
-            }
-        }).addTo(m);
-    });
-
-    // L.uGeoJSONLayer({endpoint:"/api/meshblocks/?format=json", usebbox: true}).addTo(m);
+    L.uGeoJSONLayer({
+        endpoint:"/api/meshblocks/?format=json",
+        usebbox: true,
+        enctype: "json"}).addTo(m);
 
 </script>
 
