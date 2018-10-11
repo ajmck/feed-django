@@ -33,7 +33,7 @@
 
     var m = L.map('map', {
         center: [-45.878, 170.502], //dunedin
-        zoom: 12
+        zoom: 15
     });
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={{ MAPBOX_KEY }}', {
@@ -46,6 +46,7 @@
     // add posts
     // https://medium.com/@maptastik/loading-external-geojson-a-nother-way-to-do-it-with-jquery-c72ae3b41c01
 
+    /*
     var posts = $.ajax({
         url:"/api/geo/?format=json",
         dataType: "json",
@@ -65,7 +66,7 @@
             }
         }).addTo(m);
     });
-
+*/
 
 
 
