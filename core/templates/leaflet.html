@@ -15,7 +15,7 @@
 
 
     <script src="{% static 'core/js/leaflet.uGeoJSON.js' %}"></script>
-    <script src="{% static 'core/js/choropleth.js' %}"></script>
+
 
 {% endblock extrahead %}
 
@@ -156,6 +156,27 @@
         onEachFeature: onEachFeat,
     }).addTo(m);
 
+
+
+    var legend = L.control({position: 'bottomright'});
+
+    legend.onAdd = function (map) {
+
+        var div = L.DomUtil.create('div', 'info legend'),
+            grades = [1, 0.5, 0, -0.5, -1],
+            labels = ["Upvoted", "", "Neutral", "", "Downvoted"];
+        div.innerHTML += '<i style="background:' + getColor(0, 0) + '"></i> No Posts<br /><br />';
+        // loop through our density intervals and generate a label with a colored square for each interval
+        for (var i = 0; i < grades.length; i++) {
+            div.innerHTML +=
+                '<i style="background:' + getColor(grades[i]) + '"></i> ' + labels[i] + "<br />";
+        }
+
+
+        return div;
+    };
+
+legend.addTo(m);
 
 </script>
 
