@@ -8,17 +8,20 @@ class Meshblock(models.Model):
     Posts will be placed within a meshblock, then data will be displayed on a choropleth map
     """
     geom = models.MultiPolygonField()
-    name = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
 
+    @property
+    def name_or_id(self):
+        return str(self)
 
     def __unicode__(self):
-        if self.name is not None:
-            return self.name
+        if self.description is not None:
+            return self.description
         return str(self.id)
 
     def __str__(self):
-        if self.name is not None:
-            return self.name
+        if self.description is not None:
+            return self.description
         return str(self.id)
 
 

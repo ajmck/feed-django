@@ -12,13 +12,10 @@
       integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
       crossorigin=""></script>
 
-    {# jquery for AJAX requests #}
-    <script
-			  src="https://code.jquery.com/jquery-3.3.1.min.js"
-			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			  crossorigin="anonymous"></script>
+
 
     <script src="{% static 'core/js/leaflet.uGeoJSON.js' %}"></script>
+    <script src="{% static 'core/js/choropleth.js' %}"></script>
 
 {% endblock extrahead %}
 
@@ -60,13 +57,6 @@
     });
 
 
-    var myStyle = {
-        "color": "#ff7800",
-        "weight": 5,
-        "opacity": 0.65
-    };
-
-
     $.when(posts).done(function () {
         L.geoJSON(posts.responseJSON.results, {
             onEachFeature: function (feature, layer) {
@@ -77,11 +67,90 @@
     });
 
 
-    L.uGeoJSONLayer({
+
+
+
+
+
+
+    function getColor(up, down) {
+        return up === 0 ? '#FFFFFF' :
+            '#000000';
+    }
+
+
+    function custstyle(feature) {
+        return {
+            fillColor: getColor(feature.properties.total_upvotes, feature.properties.total_downvotes),
+            weight: 1,
+            opacity: 1,
+            color: 'black',
+            dashArray: '5',
+            fillOpacity: 0.7
+        };
+    }
+
+
+    // Choropleth tutorial
+
+    function highlightFeature(e) {
+        var layer = e.target;
+
+        layer.setStyle({
+            weight: 5,
+            color: '#666',
+            dashArray: '',
+            fillOpacity: 0.7
+        });
+
+        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            layer.bringToFront();
+        }
+        info.update(layer.feature.properties);
+    }
+
+
+
+    function resetHighlight(e) {
+        geolayer.resetStyle(e.target);
+        info.update();
+    }
+
+    function zoomToFeature(e) {
+        m.fitBounds(e.target.getBounds());
+    }
+    function onEachFeat(feature, layer) {
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+            click: zoomToFeature
+        });
+    }
+
+    var info = L.control();
+
+    info.onAdd = function (map) {
+        this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+        this.update();
+        return this._div;
+    };
+
+    // method that we will use to update the control based on feature properties passed
+    info.update = function (props) {
+        this._div.innerHTML =  (props ? '<h4>' + props.name_or_id + '</h4>'
+            : 'Hover over a block');
+    };
+
+    info.addTo(m);
+
+    var geolayer = L.uGeoJSONLayer({
         endpoint:"/api/meshblocks/?format=json",
         usebbox: true,
         enctype: "json",
-        style: myStyle}).addTo(m);
+        style: custstyle,
+        onEachFeature: onEachFeat,
+    }).addTo(m);
+
 
 </script>
 

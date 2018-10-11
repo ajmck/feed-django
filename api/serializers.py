@@ -8,6 +8,7 @@ class MeshblockSerializer(GeoFeatureModelSerializer):
     total_upvotes = serializers.IntegerField(read_only=True)
     total_downvotes = serializers.IntegerField(read_only=True)
     vote_total = serializers.IntegerField(read_only=True)
+    name_or_id = serializers.StringRelatedField(read_only=True)
     
     class Meta:
         model = Meshblock

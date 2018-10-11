@@ -54,7 +54,7 @@
 
     var bounds = this._map.getBounds();
     if (this.options.usebbox) {
-      console.log(bounds.toBBoxString());
+      //.log(bounds.toBBoxString());
       postData.in_bbox = bounds.toBBoxString();
     } else {
       postData.south = bounds.getSouth();
@@ -84,7 +84,7 @@
       }
 
       if (this.status >= 200 && this.status < 400) {
-        console.log(this);
+        //console.log(this);
         var data = JSON.parse(this.response);
         data = data.results;
 
