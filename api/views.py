@@ -2,7 +2,7 @@ from rest_framework.generics import ListAPIView
 from rest_framework_gis.filters import InBBoxFilter, DistanceToPointFilter
 from core.models import Post, Comment, Meshblock
 from rest_framework import viewsets
-from .serializers import PostSerializer, MeshblockSerializer, PostGeoJsonSerializer
+from .serializers import PostSerializer, MeshblockSerializer
 
 class PostViewSet(viewsets.ModelViewSet):
     """
@@ -25,8 +25,9 @@ class MeshblockViewSet(viewsets.ReadOnlyModelViewSet):
     bbox_filter_include_overlapping = True
     distance_filter_convert_meters = True  # ensures dist query search is performed in metres
 
+
+'''
 class PostGeoJsonViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostGeoJsonSerializer
-
-
+'''

@@ -24,13 +24,14 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Post
-        fields = '__all__'
-        # exclude = ['moderation']
+        # fields = '__all__'
+        exclude = ['moderation', 'post_location']
 
     def create(self, validated_data):
         return Post.objects.create(**validated_data)
 
-
+# Disabled this to prevent raw point data leaking out
+"""
 class PostGeoJsonSerializer(GeoFeatureModelSerializer):
     total_upvotes = serializers.IntegerField(read_only=True)
     total_downvotes = serializers.IntegerField(read_only=True)
@@ -40,3 +41,4 @@ class PostGeoJsonSerializer(GeoFeatureModelSerializer):
         model = Post
         geo_field = "post_location"
         fields = '__all__'
+"""
