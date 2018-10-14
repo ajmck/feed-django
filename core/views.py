@@ -108,13 +108,6 @@ def leaflet(request):
     }))
 
 
-def here(request):
-    context = create_context({
-        'HERE_APP_ID': settings.HERE_APP_ID,
-        'HERE_APP_CODE': settings.HERE_APP_CODE
-    })
-    return render(request, 'here.html', context)
-
 
 def post_vote_up(request, post_id):
     # get object for purpose of meshblock voting
