@@ -9,3 +9,4 @@ ALLOWED_HOSTS = [".askotago.com",
     "127.0.0.1"]
 
 ENABLE_DISCLAIMER = False
+SECURE_SSL_REDIRECT = True
