@@ -22,6 +22,10 @@ RUN apk add \
 	py3-psycopg2 \
 	netcat-openbsd
 
+# GDAL dependency broke https://github.com/appropriate/docker-postgis/issues/96#issuecomment-439135368
+RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main openssl
+
+
 RUN python3 -m ensurepip
 
 # Geospatial libraries in edge repo
